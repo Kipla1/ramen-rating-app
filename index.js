@@ -12,6 +12,13 @@ const ramens = [
         rating: 5,
         image: "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=800",
         comment: "Perfect balance of flavors"
+    },
+    {
+        name:"Tan Tan Ramen",
+        restaurant: "Lee Kang In Restaurant",
+        rating: 4,
+        image:"https://thewoksoflife.com/wp-content/uploads/2021/01/tan-tan-ramen-16-1088x1536.jpg",
+        comment:'Amazing',
     }
 ];
 
