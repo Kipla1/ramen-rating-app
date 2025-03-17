@@ -9,7 +9,7 @@ const ramens = [
     {
         name: "Miso Ramen",
         restaurant: "Noodle Bar",
-        rating: 6,
+        rating: 5,
         image: "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=800",
         comment: "Perfect balance of flavors"
     }
