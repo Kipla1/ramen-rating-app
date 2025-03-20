@@ -1,60 +1,85 @@
 const ramens = [
     {
-        name: "Tonkotsu Ramen",
-        restaurant: "Ramen House",
-        rating: 3.5,
-        image: "https://images.unsplash.com/photo-1591814468924-caf88d1232e1?auto=format&fit=crop&w=800",
-        comment: "Rich and creamy broth"
-    },
-    {
-        name: "Miso Ramen",
-        restaurant: "Noodle Bar",
+        id: 1,
+        name: "Shoyu",
+        restaurant: "Ichiran",
         rating: 5,
-        image: "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=800",
-        comment: "Perfect balance of flavors"
+        image: src="img/shoyu.jpg",
+        comment: "Delicious"
     },
     {
+        id:2,
+        name: "Miso Ramen",
+        restaurant: "Menya",
+        rating: 4,
+        image: src="img/miso.jpg",
+        comment: "Very flavorful!"
+    },
+    {
+        id: 3,
         name:"Tan Tan Ramen",
         restaurant: "Lee Kang In Restaurant",
         rating: 4,
-        image:"https://thewoksoflife.com/wp-content/uploads/2021/01/tan-tan-ramen-16-1088x1536.jpg",
+        image:src="img/tonkotsu.jpg",
         comment:'Amazing',
     }
-];
-
-function displayRamens() {
+  ];
+  
+  function displayRamens() {
     const ramenMenu = document.querySelector('#ramen-menu');
     ramenMenu.innerHTML = '';
-    
+  
     ramens.forEach((ramen, index) => {
         const img = document.createElement('img');
         img.src = ramen.image;
         img.alt = ramen.name;
         img.dataset.index = index;
-        img.addEventListener('click', handleClick);
+        img.addEventListener('mouseenter', handleHover);
+        img.addEventListener('mouseleave', clearDetail);
         ramenMenu.appendChild(img);
     });
-}
-
-function handleClick(event) {
+  }
+  
+  function handleHover(event) {
+      const index = event.target.dataset.index;
+      const ramen = ramens[index];
+      showDetail(ramen);
+  }
+  
+  function clearDetail() {
+      const detailDiv = document.querySelector('#ramen-detail');
+      detailDiv.innerHTML = '';
+  }
+  
+  function showDetail(ramen) {
+      const detailDiv = document.querySelector('#ramen-detail');
+      detailDiv.innerHTML = `
+          <h1>${ramen.name}</h1>
+          <p>Restaurant: ${ramen.restaurant}</p>
+          <p>Rating: ${'⭐'.repeat(ramen.rating)}</p>
+          ${ramen.comment ? `<p>Comment: ${ramen.comment}</p>` : ''}
+      `;
+  }
+  
+  function handleClick(event) {
     const index = event.target.dataset.index;
     const ramen = ramens[index];
     const detailDiv = document.querySelector('#ramen-detail');
-    
+  
     detailDiv.innerHTML = `
         <h1>${ramen.name}</h1>
         <p>Restaurant: ${ramen.restaurant}</p>
         <p>Rating: ${'⭐'.repeat(ramen.rating)}</p>
         ${ramen.comment ? `<p>Comment: ${ramen.comment}</p>` : ''}
     `;
-}
-
-function addSubmitListener() {
+  }
+  
+  function addSubmitListener() {
     const form = document.querySelector('#new-ramen-form');
-    
+  
     form.addEventListener('submit', (event) => {
         event.preventDefault();
-        
+  
         const newRamen = {
             name: form.name.value,
             restaurant: form.restaurant.value,
@@ -62,17 +87,20 @@ function addSubmitListener() {
             image: form.image.value,
             comment: form.comment.value
         };
-        
+  
         ramens.push(newRamen);
         displayRamens();
         form.reset();
     });
-}
-
-function main() {
+  }
+  
+  function main() {
     displayRamens();
     addSubmitListener();
-}
-
-
-document.addEventListener('DOMContentLoaded', main);
+  }
+  
+  
+  document.addEventListener('DOMContentLoaded', main);
+  
+  
+  
